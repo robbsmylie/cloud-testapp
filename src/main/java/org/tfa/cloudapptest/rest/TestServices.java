@@ -18,7 +18,7 @@ public class TestServices {
 	@RequestMapping("/")
     public String home() {
         System.out.println("/ called, returning Hello World");
-        return "Hello World!";
+        return "This is a simple app for testing bluemix features";
     }
 
     @RequestMapping("testdb/school/{id}")
