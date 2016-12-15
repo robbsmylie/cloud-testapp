@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DbDataSource {
 	
-	@Value("${DATABASE_URL}")
+	@Value("${database_url}")
 	private String databaseUrlProperty;
 
-	@Value("${DATABASE_USER}")
+	@Value("${database_user}")
 	private String databaseUserProperty;
 
-	@Value("${DATABASE_PASSWORD}")
+	@Value("${database_password}")
 	private String databasePasswordProperty;
 	
 	public void setDatabaseUrlProperty(String url) {
