@@ -1,0 +1,1 @@
+cf push -p cloud-apptest.war -b https://github.com/cloudfoundry/java-buildpack
