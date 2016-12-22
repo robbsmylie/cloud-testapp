@@ -7,34 +7,25 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
-public class DbDataSource {
+public class RemoteDbDataSource {
 	
-	@Value("${database_url}")
+	@Value("${remote.database.url:localhost}")
 	private String databaseUrlProperty;
 
-	@Value("${database_user}")
+	@Value("${remote.database.user:testuser}")
 	private String databaseUserProperty;
 
-	@Value("${database_password}")
+	@Value("${remote.database.password:testpass}")
 	private String databasePasswordProperty;
 	
-	public void setDatabaseUrlProperty(String url) {
-		databaseUrlProperty = url;
-	}
-	
-	@Bean
-	public BasicDataSource dataSource() throws URISyntaxException {
+	@Primary
+	@Bean(value="remoteDataSource")
+	public BasicDataSource remoteDataSource() throws URISyntaxException {
 		
 		System.out.println("database url: "+databaseUrlProperty);
-		/*
-		URI dbUri = new URI(databaseUrlProperty);
-
-		String username = dbUri.getUserInfo().split(":")[0];
-		String password = dbUri.getUserInfo().split(":")[1];
-		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-		*/
 		
 		BasicDataSource basicDataSource = new BasicDataSource();
 		basicDataSource.setUrl(databaseUrlProperty);

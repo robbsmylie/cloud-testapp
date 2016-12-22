@@ -13,39 +13,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.tfa.cloudapptest.om.School;
 import org.tfa.cloudapptest.om.SchoolDao;
 
+@RequestMapping("remotesvc/")
 @RefreshScope
 @RestController
-public class TestServices {
+public class RemoteSvcServices {
 
-	@Autowired
-	private SchoolDao schoolDao;
-	
-	@Value("${message:Hello default}")
-	String configMessage = null;
-
-	@Value("${service.registry.school.data.get}")
+	@Value("${service.registry.school.data.get:localhost}")
 	String schoolDataGetUrl = null;
 	
-	@RequestMapping("/")
-    public String home() {
-        System.out.println("/ called, returning Hello World");
-        return "This is a simple app for testing bluemix features in cloud foundry and containers";
-    }
-
-	@RequestMapping("config-message")
-    public String configMessage() {
-        System.out.println("message service called");
-        return "this is the config message: "+configMessage;
-    }
-
-    @RequestMapping("testdb/school/{id}")
-    public School getSchoolRowDb(@PathVariable(value="id") String schoolId) {
-        System.out.println("/schoolrowdb called");
-        School school = schoolDao.getSchoolTestRow(schoolId);
-        return school;
-    }
-
-    @RequestMapping("testsvc/school/{id}")
+    @RequestMapping("school/{id}")
     public School getSchoolRowsvc(@PathVariable(value="id") String schoolId) {
         System.out.println("/schoolrowsvc called with id="+schoolId);
         

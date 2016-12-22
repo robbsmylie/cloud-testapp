@@ -6,20 +6,20 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class SchoolDao {
 
 	private JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
+	public SchoolDao(BasicDataSource dataSource) {
 		System.out.println("setting datasource for template");
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.jdbcTemplate = new JdbcTemplate(dataSource);		
 	}
 
 	public School getSchoolTestRow(String schoolId) {

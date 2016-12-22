@@ -9,9 +9,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
+// adding this annotation disables the default endpoint security provided
+// by spring-boot and spring-security
+@EnableWebSecurity
 @SpringBootApplication
 public class SimpleApp extends SpringBootServletInitializer {
 
