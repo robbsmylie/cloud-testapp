@@ -36,6 +36,9 @@ public class LocalDbDataSource {
 		else if(databaseUrlProperty.contains("oracle")) {
 			basicDataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 		}
+		else if(databaseUrlProperty.contains("sqlserver")) {
+			basicDataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		}
 			
 		return basicDataSource;
 	}

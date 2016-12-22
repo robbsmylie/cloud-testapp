@@ -1,8 +1,12 @@
 package org.tfa.cloudapptest.rest;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +24,8 @@ import org.tfa.cloudapptest.om.SchoolDao;
 @RestController
 public class LocalDbServices {
 
+	static final Logger LOG = LoggerFactory.getLogger(LocalDbServices.class);
+	
 	private SchoolDao schoolDao;
 	
 	@Autowired
@@ -30,9 +36,20 @@ public class LocalDbServices {
 	
     @RequestMapping("school/{id}")
     public School getSchoolRowDb(@PathVariable(value="id") String schoolId) {
-        System.out.println("/schoolrowdb called");
+        LOG.info("/schoolrowdb called");
         School school = schoolDao.getSchoolTestRow(schoolId);
         return school;
     }
 
+    @RequestMapping("school/timingtest/{num}")
+    public List timingTest(@PathVariable(value="num") int num) {
+        LOG.info("/schoolrowdb called");
+    	
+        List schools = new ArrayList();
+    	for(int i=1; i<=num; i++) {
+            School school = getSchoolRowDb((new Integer(i)).toString());    		
+    	}
+    	
+        return schools;
+    }    
 }
