@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OauthTestServices {
 
-	@Autowired
-	OAuth2RestTemplate restTemplate = null;
-	
 	@Value("${oauth.token.url:localhost}")
 	String oauthTokenUrl = null;
 
